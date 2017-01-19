@@ -1,3 +1,30 @@
+
 <h1>
   {{title}}
 </h1>
+<div *ngFor="let current of currentWeather">
+  <span>{{current.location.name}}: ({{current.location.region}}) - {{current.location.country}}</span>
+  <div>
+    <span>Temperature: {{current.current.temp_c}}&deg;C / Feels like: {{current.current.feelslike_c}}&deg;C</span>
+  </div>
+  <div>
+    <span>{{current.current.condition.text}}</span>
+    <img src="{{current.current.condition.icon}}"/>
+  </div>
+  <div>
+    <span>Humidity: {{current.current.humidity}}%</span>
+  </div>
+  <div>
+    <span>Presure: {{current.current.pressure_mb}}mb</span>
+  </div>
+  <div>
+    <span>Wind: {{current.current.wind_kph}}Km/h {{current.current.wind_dir}}</span>
+  </div>
+  <div>
+    <span>Precip: {{current.current.precip_mm}}mm</span>
+  </div>
+</div>
+<div *ngFor="let forecast of forecastWeather">
+
+</div>
+<footer>{{currentYear}}&copy;</footer>

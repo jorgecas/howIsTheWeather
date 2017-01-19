@@ -1,24 +1,33 @@
 import { Component } from '@angular/core';
 
 import { WeatherService } from './weather.service';
+import { ApixuService } from './services/apixu.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [WeatherService]
+  providers: [ApixuService, WeatherService]
 })
 export class AppComponent {
   public title: string;
+  public currentYear: number;
+  public currentWeather;
+  public forecastWeather;
   constructor(private weatherService: WeatherService) {
-    console.log(`I'm on the constructor`);
     this.init();
   }
   init() {
-    console.log(`i'm on init method`);
-    this.weatherService.getForecast().then(result => {
-      console.log(result);
-      this.title = result.forecast;
-    });
+    this.title = 'How is the weather?'
+    this.currentWeather = [];
+    this.forecastWeather = [];
+    this.currentYear = new Date().getFullYear();
+    let current = this.weatherService.getCurrentWeather();
+    let forecast = this.weatherService.getForecast();
+
+    current.subscribe(result => this.currentWeather.push(result));
+
+    forecast.subscribe(result => this.forecastWeather.push(result));
   }
 }
