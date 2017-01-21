@@ -28,6 +28,9 @@ export class AppComponent {
 
     current.subscribe(result => this.currentWeather.push(result));
 
-    forecast.subscribe(result => this.forecastWeather.push(result));
+    forecast.subscribe(result => {
+      debugger;
+      this.forecastWeather.push(result)
+    });
   }
 }

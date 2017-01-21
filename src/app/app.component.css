@@ -1,0 +1,24 @@
+html, body {
+    font-size: 10px;
+}
+.current-weather__container {
+    display: flex;
+    flex-direction: column;
+}
+.current-weather__element{
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.current-weather__element__icon{
+    height: 1rem;
+    padding: .3rem;
+}
+
+.current-weather__element__value{
+     padding: .3rem;
+}
+.current-weather__element__label{
+    text-decoration: underline;
+    padding: .3rem;
+}

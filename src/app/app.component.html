@@ -2,29 +2,40 @@
 <h1>
   {{title}}
 </h1>
-<div *ngFor="let current of currentWeather">
-  <span>{{current.location.name}}: ({{current.location.region}}) - {{current.location.country}}</span>
-  <div>
-    <span>Temperature: {{current.current.temp_c}}&deg;C / Feels like: {{current.current.feelslike_c}}&deg;C</span>
-  </div>
-  <div>
-    <span>{{current.current.condition.text}}</span>
+<div class="current-weather__container" *ngFor="let current of currentWeather">
+  <div class="current_weather__icon">
     <img src="{{current.current.condition.icon}}"/>
   </div>
-  <div>
-    <span>Humidity: {{current.current.humidity}}%</span>
+  <div class="current-weather__element">
+    <img class="current-weather__element__icon" src="./images/location.png"/>
+    <span class="current-weather__element__value">{{current.location.name}}: ({{current.location.region}}) - {{current.location.country}}</span>
   </div>
-  <div>
-    <span>Presure: {{current.current.pressure_mb}}mb</span>
+  <div class="current-weather__element">
+    <span class="current-weather__element__label">Temperature:</span>    
+    <span class="current-weather__element__value">{{current.current.temp_c}}&deg;C / Feels like: {{current.current.feelslike_c}}&deg;C</span>
   </div>
-  <div>
-    <span>Wind: {{current.current.wind_kph}}Km/h {{current.current.wind_dir}}</span>
+  <div class="current-weather__element">
+    <span class="current-weather__element__label">Condition:</span>
+    <span class="current-weather__element__value">{{current.current.condition.text}}</span>
   </div>
-  <div>
-    <span>Precip: {{current.current.precip_mm}}mm</span>
+  <div class="current-weather__element">
+    <span class="current-weather__element__label">Humidity:</span>
+    <span class="current-weather__element__value">{{current.current.humidity}}%</span>
+  </div>
+  <div class="current-weather__element">
+    <span class="current-weather__element__label">Presure:</span>
+    <span class="current-weather__element__value">{{current.current.pressure_mb}}mb</span>
+  </div>
+  <div class="current-weather__element">
+    <span class="current-weather__element__label">Wind:</span>
+    <span class="current-weather__element__value">{{current.current.wind_kph}}Km/h {{current.current.wind_dir}}</span>
+  </div>
+  <div class="current-weather__element">
+    <span class="current-weather__element__label">Precip:</span>
+    <span class="current-weather__element__value">{{current.current.precip_mm}}mm</span>
   </div>
 </div>
 <div *ngFor="let forecast of forecastWeather">
-
+  <span>{{forecast}}</span>
 </div>
 <footer>{{currentYear}}&copy;</footer>
