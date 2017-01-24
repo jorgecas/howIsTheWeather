@@ -39,14 +39,14 @@ export class ApixuService {
     this.format = format;
   }
 
-  getCurrent(query = this.defaultQuery): Observable<Response> {
+  getCurrent(query = this.defaultQuery): Observable<any> {
     let url = this.getUrl(query);
     return this.http.get(url)
                     .map(this.handleResponse)
                     .catch(this.handleError);
   }
 
-  getForecast(query = this.defaultQuery): Observable<Response> {
+  getForecast(query = this.defaultQuery): Observable<any> {
     let url = this.getUrl(query, Requests[Requests.forecast]);
     return this.http.get(url)
                     .map(this.handleResponse)
@@ -54,11 +54,18 @@ export class ApixuService {
 
   }
 
-  handleResponse(value: Response ){
-    return value.json()
+  searchLocation(query = this.defaultQuery): Observable<any> {
+    let url = this.getUrl(query, Requests[Requests.search]);
+    return this.http.get(url)
+                    .map(this.handleResponse)
+                    .catch(this.handleError);
   }
 
-  handleError(error:any) {
+  private handleResponse(value: Response ){
+    return value.json();
+  }
+
+  private handleError(error:any) {
     return Observable.throw(error.json().error || `There was an error fetching data from ${this.name} service`);
   }
 }

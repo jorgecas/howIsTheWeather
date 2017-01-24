@@ -2,6 +2,16 @@
 <h1>
   {{title}}
 </h1>
+<div class="location__selector">
+  <input type="search" [(ngModel)]="location" (keyup)="searchLocation(location)"/>
+</div>
+<ul>
+<li class="location__search-result" 
+    (click)="getCurrentWeather(location.name)"
+    *ngFor="let location of locations">
+  <span>{{location.url}}</span>
+  </li>
+</ul>
 <div class="current-weather__container" *ngFor="let current of currentWeather">
   <div class="current_weather__icon">
     <img src="{{current.current.condition.icon}}"/>
@@ -34,8 +44,5 @@
     <span class="current-weather__element__label">Precip:</span>
     <span class="current-weather__element__value">{{current.current.precip_mm}}mm</span>
   </div>
-</div>
-<div *ngFor="let forecast of forecastWeather">
-  <span>{{forecast}}</span>
 </div>
 <footer>{{currentYear}}&copy;</footer>

@@ -11,25 +11,49 @@ import { ApixuService } from './services/apixu.service';
   providers: [ApixuService, WeatherService]
 })
 export class AppComponent {
-  public title: string;
+  public title: string = 'How is the weather?';
   public currentYear: number;
-  public currentWeather;
-  public forecastWeather;
+  public currentWeather = [];
+  public forecastWeather = [];
+
+  public location;
+  public locations = [];
+
+  private timeout;
+  private timeoutInterval = 1000;
+
   constructor(private weatherService: WeatherService) {
     this.init();
   }
   init() {
-    this.title = 'How is the weather?'
-    this.currentWeather = [];
-    this.forecastWeather = [];
     this.currentYear = new Date().getFullYear();
-    let current = this.weatherService.getCurrentWeather();
-    let forecast = this.weatherService.getForecast();
 
-    current.subscribe(result => this.currentWeather.push(result));
+    this.getCurrentWeather();
+  }
 
+  searchLocation(location) {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      var searchResult = this.weatherService.searchLocation(location);
+      this.locations = [];
+      searchResult.subscribe(result => {
+        result.forEach(r => {
+          this.locations.push(r);          
+        });
+      })
+    }, this.timeoutInterval);
+  }
+  getCurrentWeather(location?: string) {
+    let current = this.weatherService.getCurrentWeather(location);
+    current.subscribe(result => {
+      this.currentWeather = [];
+      this.currentWeather.push(result)
+    });
+  }
+  getForecastWeather(location?: string) {
+    let forecast = this.weatherService.getForecast(location);
     forecast.subscribe(result => {
-      debugger;
+      this.forecastWeather = [];
       this.forecastWeather.push(result)
     });
   }

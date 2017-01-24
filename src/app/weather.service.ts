@@ -15,4 +15,8 @@ export class WeatherService {
   getForecast(query?: string) {
     return this.apixuService.getForecast(query);
   }
+
+  searchLocation(query?: string) {
+    return this.apixuService.searchLocation(query);
+  }
 }
