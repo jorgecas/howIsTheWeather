@@ -45,6 +45,9 @@ export class AppComponent {
   }
   getCurrentWeather(location?: string) {
     let current = this.weatherService.getCurrentWeather(location);
+
+    this.location = location;
+    this.locations = [];
     current.subscribe(result => {
       this.currentWeather = [];
       this.currentWeather.push(result)

@@ -9,7 +9,7 @@ import { MockBackend } from '@angular/http/testing';
 import { WeatherService } from './weather.service';
 import { AppComponent } from './app.component';
 
-describe('AppComponent Testing', () => {
+describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],

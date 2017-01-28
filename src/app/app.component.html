@@ -3,13 +3,13 @@
   {{title}}
 </h1>
 <div class="location__selector">
-  <input type="search" [(ngModel)]="location" (keyup)="searchLocation(location)"/>
+  <input type="text" [(ngModel)]="location" (keyup)="searchLocation(location)"/>
 </div>
-<ul>
-<li class="location__search-result" 
+<ul class="location__search-result">
+  <li class="location__search-result--item" 
     (click)="getCurrentWeather(location.name)"
     *ngFor="let location of locations">
-  <span>{{location.url}}</span>
+  <span>{{location.name}}</span>
   </li>
 </ul>
 <div class="current-weather__container" *ngFor="let current of currentWeather">
