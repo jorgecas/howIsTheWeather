@@ -9,34 +9,20 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ApixuService {
-  private name: string;
-  private key: string;
+  private name: string = 'Apixu';
+  private key: string = 'a885581ca7e4469faa8221724171501';
 
-  private format: string;
-  private protocol: string;
   private url: string;
   private defaultQuery: string;
   private unitSystem: string;
 
   constructor(private http: Http) {
-    this.name = 'Apixu';
-    this.key = 'a885581ca7e4469faa8221724171501';
   	this.defaultQuery = 'auto:ip';
-    this.format = Formats[Formats.json];
     this.unitSystem = UnitSystems[UnitSystems.metric];
-    this.protocol = Protocols[Protocols.https];
   }
 
-  private getUrl(query = this.defaultQuery, request = Requests[Requests.current], format = this.format, protocol = this.protocol) {
-    return `${protocol}://api.apixu.com/v1/${request}.${format}?key=${this.key}&q=${query}`
-  }
-
-  setProtocol(protocol = Protocols[Protocols.https]) {
-    this.protocol = protocol;
-  }
-
-  setResponseFormat(format = Formats[Formats.json]) {
-    this.format = format;
+  private getUrl(query = this.defaultQuery, request = Requests[Requests.current], format = Formats[Formats.json], protocol = Protocols[Protocols.https]) {
+    return `${protocol}://api.apixu.com/v1/${request}.${format}?key=${this.key}&q=${query}`;
   }
 
   getCurrent(query = this.defaultQuery): Observable<any> {

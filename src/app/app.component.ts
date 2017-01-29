@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 
 import { WeatherService } from './weather.service';
 import { ApixuService } from './services/apixu.service';
+import { ForecastIoService } from './services/forecastio.service';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ApixuService, WeatherService]
+  providers: [ApixuService, ForecastIoService, WeatherService]
 })
 export class AppComponent {
   public title: string = 'How is the weather?';
